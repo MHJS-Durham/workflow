@@ -1,0 +1,4 @@
+- source: notes-on-workflow.qmd
+  quarto-pub:
+    - id: e6923d0f-620a-4919-a06a-f2631b7ce54e
+      url: 'https://maria.quarto.pub/notes-on-reproducible-workflows'
