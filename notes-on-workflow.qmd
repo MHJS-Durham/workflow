@@ -20,7 +20,7 @@ The source code for this document is available at [github.com/matackett/mhjs-wor
 
 In *Telling Stories with Data* [@alexander2023], Rohan Alexander as this about reproducibility (emphasis mine):
 
-> *"Alexander ([2019](https://tellingstorieswithdata.com/99-references.html#ref-Alexander2019)) defines reproducible research as that which can be exactly redone, given* all *the materials used. This underscores the importance of providing the **code, data, and environment**. The minimum expectation is that another person is independently able to use your code, data, and environment to get your results, including figures and tables."*
+> "Alexander ([2019](https://tellingstorieswithdata.com/99-references.html#ref-Alexander2019)) defines reproducible research as that which can be exactly redone, given all the materials used. This underscores the importance of providing the **code, data, and environment**. The minimum expectation is that another person is independently able to use your code, data, and environment to get your results, including figures and tables."
 
 Using this definition as a guide, we can think about how to make our research reproducible by establishing good practices in each of the following areas:
 
@@ -48,6 +48,32 @@ At a minimum, [every]{.underline} data set should have a *codebook* (aka data di
 -   Precise definition
 -   Possible values / categories
 -   Units (if applicable)
+
+Here are some examples from our data sets. Some of this information was pulled from the data dictionary provided by the ACE team who created the deidentified data set.
+
+-   **Column name**: `RACE`
+-   **Data type**: Categorical
+-   **Precise definition**: Race record from DCDF
+-   **Possible values / categories**:
+    -   A
+    -   AMERICAN INDIAN OR ALASKAN NATIVE
+    -   ASIAN OR PACIFIC ISLANDER
+    -   B
+    -   BLACK
+    -   H
+    -   I
+    -   U
+    -   UKNOWN
+    -   W
+    -   WHITE
+    -   `NA`
+-   **Units (if applicable)**: N/A
+
+::: {.callout-important appearance="simple"}
+Let's write the codebook entry for a variable in the encounters data set and for a variable in the cost data set.
+:::
+
+<!--# add example from encounters / diagnosis data set-->
 
 Another important piece of documentation is the datasheet that provides more information regarding the motivation for the data set, data collection, contents of the data, and ethical considerations. @gebru2021datasheets gives a list of questions we can use to create "a datasheet that documents its motivation, composition, collection process, recommended uses, and so on." Datasheets serve a different purposes for data creators and data consumers.
 
@@ -121,7 +147,17 @@ Projects are a nice way to organize your work. They are "widely used in software
 
 A project is essentially a folder on your computer, so you can organize the files in a way that will be easy for you and others to navigate. [Section 3.3 R projects and file structure](https://tellingstorieswithdata.com/03-workflow.html#r-projects-and-file-structure) in *Telling Stories with Data* gives an example organization scheme for an R project. Section [7.2.3 RStudio Projects](https://r4ds.hadley.nz/workflow-scripts.html#saving-and-naming) in *R for Data Science (2e)* gives more detail about how to create and use projects.
 
-Within the project, use file names that are both "machine readable" and "human readable". [Section 7.1.3 Saving and naming](https://r4ds.hadley.nz/workflow-scripts.html#saving-and-naming) in *R for Data Science (2e)* provides guidelines and examples for making machine and human readable file names.
+Within the project, use file names that "machine readable", "human readable", and are in a default order. [Section 6.1.3 Saving and naming](https://r4ds.hadley.nz/workflow-scripts.html#saving-and-naming) in *R for Data Science (2e)* provides the the guidelines below for good file name practices:
+
+> 1.  File names should be **machine** readable: avoid spaces, symbols, and special characters. Don’t rely on case sensitivity to distinguish files.
+>
+> 2.  File names should be **human** readable: use file names to describe what’s in the file.
+>
+> 3.  File names should play well with default ordering: start file names with numbers so that alphabetical sorting puts them in the order they get used.
+
+::: callout-tip
+See [Section 6.1.3](https://r4ds.hadley.nz/workflow-scripts.html#saving-and-naming) in *R for Data Science (2ed)* for examples of file names that are machine readable and human readable.
+:::
 
 ::: {.callout-important appearance="simple"}
 How might we organize the work on this team into projects, e.g., a project for each analysis? each team member? etc.?
@@ -129,6 +165,8 @@ How might we organize the work on this team into projects, e.g., a project for e
 
 # Environment
 
-In the context of reproducibility in R and RStudio, the *environment* essentially refers to the version of all R packages used in a project. Because R packages are regularly updated, being able to reproduce the project environment is important for long-term reproducibility of projects.
+In the context of reproducibility in R and RStudio, the *environment* essentially refers to the version of all R packages used in a project. Because R packages are regularly updated, being able to reproduce the project environment is important for long-term reproducibility of projects. As time goes on, function names, arguments, or other features of a function may change. This could potentially cause errors if the code is run in the future with the updated packages. By saving the environment, you are saving the state of the R packages at the time in which the code was written, thus more fully reproducing the code and coding environment.
 
 A rigorous approach is using the [renv](https://rstudio.github.io/renv/articles/renv.html) package [@renv] which stores the R packages in the project directory [@r4ds]. Another option is to run the function `sessionInfo()` and save the results in the project directory. This function will print give information about the R version, details about the computer, packages, and their version.
+
+## References
